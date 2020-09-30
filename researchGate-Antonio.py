@@ -109,8 +109,6 @@ def findAllTest(search_param):
 		containerxpath = '//div[@class="nova-o-stack__item"]'
 		# Encontrar todas las tarjetas de artículos dentro de la página usanndo XPath
 		articles = WebDriverWait(driver, timeout = 10).until(lambda d : d.find_elements_by_xpath(containerxpath))
-		# Manejar excepción de stale element
-		ignoredExceptions = (NoSuchElementException,StaleElementReferenceException)
 
 		# Ciclando cada uno de los articulos de la variable 'articles'
 		for article in articles:
