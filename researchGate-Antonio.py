@@ -34,7 +34,7 @@ def findOnePage(search_param):
 		# List Items que contienen los metadatos: Fecha, DOI, ISBN
 		metadata = article.find_elements_by_xpath('.//li[@class="nova-e-list__item nova-v-publication-item__meta-data-item"]')
 		# Spans que contienen los nombres de cada uno de los colaboradores
-		collaborators = article.find_elements_by_xpath('.//span[@class="nova-v-person-inline-item__fullname"]');
+		collaborators = article.find_elements_by_xpath('.//span[@class="nova-v-person-inline-item__fullname"]')
 		
 		# Procesamiento de los webelements
 		# Declaración de arreglo de todos los colaboradores
@@ -118,7 +118,7 @@ def findAllTest(search_param):
 			# List Items que contienen los metadatos: Fecha, DOI, ISBN
 			metadata = article.find_elements_by_xpath('.//li[@class="nova-e-list__item nova-v-publication-item__meta-data-item"]')
 			# Spans que contienen los nombres de cada uno de los colaboradores
-			collaborators = article.find_elements_by_xpath('.//span[@class="nova-v-person-inline-item__fullname"]');
+			collaborators = article.find_elements_by_xpath('.//span[@class="nova-v-person-inline-item__fullname"]')
 			
 			# Procesamiento de los webelements
 			# Declaración de arreglo de todos los colaboradores
@@ -173,8 +173,8 @@ def findAllTest(search_param):
 
 # Busqueda desde el código
 # search_param = "escudero-nahón"
-# search_param = "Sandra Luz Canchola-Magdaleno"
-search_param = "José Alejandro Vargas-Díaz"
+search_param = "Sandra Luz Canchola-Magdaleno"
+# search_param = "José Alejandro Vargas-Díaz"
 
 print(findAllTest(search_param))
 # input()
