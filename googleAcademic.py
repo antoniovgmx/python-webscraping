@@ -23,7 +23,7 @@ def findResults(search_param):
 
     #Verificar si existen resultados por 5 segundos
     try:
-        WebDriverWait(driver, timeout = 5).until(lambda d : d.find_elements_by_class_name("gsc_1usr"))
+        WebDriverWait(driver, timeout = 10).until(lambda d : d.find_elements_by_class_name("gsc_1usr"))
         print("se encontraton resultado")
     except:
         return [{ "error" : "Sin resultados" }]
@@ -33,7 +33,7 @@ def findResults(search_param):
 
     #Esperar a que la pagina cargue por 5 segundos
     try:
-        WebDriverWait(driver, timeout = 5).until(lambda d: d.find_element_by_id('gsc_a_b')) 
+        WebDriverWait(driver, timeout = 10).until(lambda d: d.find_element_by_id('gsc_a_b')) 
 
         #Cargar todos los articulos
         driver.find_element_by_id('gsc_bpf_more').click()
