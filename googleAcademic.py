@@ -1,15 +1,20 @@
 from selenium import webdriver
+from selenium.webdriver import Chrome
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import time
 
 def findGoogle(search_param):
+    #Ignorar los certificados:
+    options = webdriver.ChromeOptions()
+    options.add_argument('ignore-certificate-errors')
+    options.add_argument('--ignore-ssl-errors')
+    options.headless = True
     articlesData = []
 
     #Chrome drivers
-    driver = webdriver.Chrome()
+    driver = Chrome(chrome_options=options)
 
     #Navegar a google academico
     driver.get('https://scholar.google.com/citations?view_op=search_authors&mauthors=&hl=en&oi=ao')
