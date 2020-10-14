@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-def findResults(search_param):
+def findGoogle(search_param):
     articlesData = []
 
     #Chrome drivers
@@ -67,5 +67,5 @@ def findResults(search_param):
         articlesData.append(data)
 
     return articlesData
-print(findResults("escudero-nahon"))
+# print(findGoogle("escudero-nahon"))
 

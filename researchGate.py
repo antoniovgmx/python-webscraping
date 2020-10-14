@@ -11,7 +11,7 @@ def findOnePage(search_param):
 	options = webdriver.ChromeOptions()
 	options.add_argument('ignore-certificate-errors')
 	options.add_argument('--ignore-ssl-errors')
-	# options.headless = True
+	options.headless = True
 
 	# Instanciando el webdriver de Chrome (Chromium)
 	driver = Chrome(chrome_options=options)
@@ -72,14 +72,14 @@ def findOnePage(search_param):
 	# Retornamos el arreglo de objetos artículo.
 	return articlesData
 
-def findAllTest(search_param):
+def findResearchGate(search_param):
 
 
 	# Ignorar los certificados:
 	options = webdriver.ChromeOptions()
 	options.add_argument('ignore-certificate-errors')
 	options.add_argument('--ignore-ssl-errors')
-	# options.headless = True
+	options.headless = True
 
 	# Instanciando el webdriver de Chrome (Chromium)
 	driver = Chrome(chrome_options=options)
@@ -165,7 +165,7 @@ def findAllTest(search_param):
 	return articlesData
 
 #########################################################
-             # MAIN EXECUTION - TESTING #
+            # MAIN EXECUTION - TESTING #
 #########################################################
 
 # Input provisional para el objeto de la búsqueda.
@@ -173,8 +173,8 @@ def findAllTest(search_param):
 
 # Busqueda desde el código
 # search_param = "escudero-nahón"
-search_param = "Sandra Luz Canchola-Magdaleno"
+# search_param = "Sandra Luz Canchola-Magdaleno"
 # search_param = "José Alejandro Vargas-Díaz"
 
-print(findAllTest(search_param))
+# print(findResearchGate(search_param))
 # input()
