@@ -15,10 +15,21 @@ def queryDatabase(search_param):
 
 def insertData(name, data):
 
-    return authors.replace_one({ 'full_name' : name }, {
+    if(queryDatabase is not None):
+        authors.replace_one({ 'full_name' : name }, {
         'name' : name,
         'date' : datetime.datetime.now(),
         'research_gate' : data['research_gate'],
         'google' : data['google']
+        }) 
+    else :
+        authorid = authors.insert_one({ 'full_name' : name }, {
+        'name' : name,
+        'date' : datetime.datetime.now(),
+        'research_gate' : data['research_gate'],
+        'google' : data['google']
+        }).inserted_id
 
-    })
+    insertedData = queryDatabase(name)
+
+    return insertedData
