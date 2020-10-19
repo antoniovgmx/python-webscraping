@@ -23,12 +23,12 @@ def insertData(name, data):
         'google' : data['google']
         }) 
     else:
-        authors.insert_one({ 'full_name' : name }, {
+        authors.insert_one({
         'full_name' : name,
         'date' : datetime.datetime.now(),
         'research_gate' : data['research_gate'],
         'google' : data['google']
-        }).inserted_id
+        })
 
     insertedData = queryDatabase(name)
 
