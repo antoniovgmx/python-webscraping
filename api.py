@@ -55,11 +55,11 @@ def testinsertendpoint(name):
 
 
 # Testing
-@app.route('/test/replace/<string:name>')
+@app.route('/test/replace/<string:name>/<string:newname>')
 def testreplaceendpoint(name):
 
     try:
-        replaceTest(name)
+        replaceTest(name, newname)
         return "Success"
     except:
         return "Fail"

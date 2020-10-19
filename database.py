@@ -23,7 +23,7 @@ def insertData(name, data):
         'google' : data['google']
         }) 
     else :
-        authorid = authors.insert_one({ 'full_name' : name }, {
+        authors.insert_one({ 'full_name' : name }, {
         'full_name' : name,
         'date' : datetime.datetime.now(),
         'research_gate' : data['research_gate'],
@@ -42,9 +42,9 @@ def insertTest(name):
         'google' : 'No data'
     })
 
-def replaceTest(name):
+def replaceTest(name, newname):
     authors.replace_one({ 'full_name' : name }, {
-        'full_name' : name,
+        'full_name' : newname,
         'date' : datetime.datetime.now(),
         'research_gate' : 'No data',
         'google' : 'No data'
