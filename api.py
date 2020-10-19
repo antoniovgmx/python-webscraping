@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from researchGate import findResearchGate
 from googleAcademic import findGoogle
-from database import queryDatabase, insertData
+from database import queryDatabase, insertData, insertTest, replaceTest
 from bson import json_util
 
 app = Flask(__name__)
@@ -41,6 +41,31 @@ def scrape(name):
         "research_gate" : findResearchGate(name),
         "google" : findGoogle(name)
     }
+
+# Testing
+@app.route('/test/insert/<string:name>')
+def testinsertendpoint(name):
+
+    try:
+        insertTest(name)
+        return "Success"
+    except:
+        return "Fail"
+
+
+
+# Testing
+@app.route('/test/replace/<string:name>')
+def testreplaceendpoint(name):
+
+    try:
+        replaceTest(name)
+        return "Success"
+    except:
+        return "Fail"
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

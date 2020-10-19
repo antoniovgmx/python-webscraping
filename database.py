@@ -17,14 +17,14 @@ def insertData(name, data):
 
     if(queryDatabase is not None):
         authors.replace_one({ 'full_name' : name }, {
-        'name' : name,
+        'full_name' : name,
         'date' : datetime.datetime.now(),
         'research_gate' : data['research_gate'],
         'google' : data['google']
         }) 
     else :
         authorid = authors.insert_one({ 'full_name' : name }, {
-        'name' : name,
+        'full_name' : name,
         'date' : datetime.datetime.now(),
         'research_gate' : data['research_gate'],
         'google' : data['google']
@@ -33,3 +33,19 @@ def insertData(name, data):
     insertedData = queryDatabase(name)
 
     return insertedData
+
+def insertTest(name):
+    authors.insert_one({
+        'full_name' : name,
+        'date' : datetime.datetime.now(),
+        'research_gate' : 'No data',
+        'google' : 'No data'
+    })
+
+def replaceTest(name):
+    authors.replace_one({ 'full_name' : name }, {
+        'full_name' : name,
+        'date' : datetime.datetime.now(),
+        'research_gate' : data['research_gate'],
+        'google' : data['google']
+        }) 
