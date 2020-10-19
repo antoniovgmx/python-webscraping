@@ -47,8 +47,8 @@ def scrape(name):
 def testinsertendpoint(name):
 
     try:
-        insertTest(name)
-        return "Success"
+        return insertTest(name)
+        # return "Success"
     except:
         return "Fail"
 
@@ -56,11 +56,11 @@ def testinsertendpoint(name):
 
 # Testing
 @app.route('/test/replace/<string:name>/<string:newname>')
-def testreplaceendpoint(name):
+def testreplaceendpoint(name,newname):
 
     try:
-        replaceTest(name, newname)
-        return "Success"
+        return replaceTest(name, newname)
+        # return "Success"
     except:
         return "Fail"
 

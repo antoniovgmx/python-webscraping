@@ -42,10 +42,20 @@ def insertTest(name):
         'google' : 'No data'
     })
 
+    inserted = queryDatabase(name)
+
+    return inserted
+
+
 def replaceTest(name, newname):
     authors.replace_one({ 'full_name' : name }, {
         'full_name' : newname,
         'date' : datetime.datetime.now(),
         'research_gate' : 'No data',
         'google' : 'No data'
-        }) 
+    }) 
+
+    replaced = queryDatabase(newname)
+
+    return replaced
+
