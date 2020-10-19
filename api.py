@@ -33,14 +33,18 @@ def query(name):
     else:
         return { 'error' : 'Sin resultados' }
 
-# Realiza únicamente el scrape, sin guardar los resultados 
+# Realiza únicamente el scrape guardando o sobreescribiendo los datos de la base de datos
 @app.route('/scrape/<string:name>')
 def scrape(name):
 
-    return {
-        "research_gate" : findResearchGate(name),
-        "google" : findGoogle(name)
+    scrapeResults = {
+        'research_gate' : findResearchGate(name),
+        'google' : findGoogle(name)
     }
+
+    insertedData = insertData(name, scrapeResults)
+    
+    return insertedData
 
 # Testing
 @app.route('/test/insert/<string:name>')
