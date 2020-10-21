@@ -4,17 +4,25 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 import time
+import os
 
 def findGoogle(search_param):
+
+
     #Ignorar los certificados:
-    options = webdriver.ChromeOptions()
-    options.add_argument('ignore-certificate-errors')
-    options.add_argument('--ignore-ssl-errors')
-    options.headless = True
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('ignore-certificate-errors')
+    chrome_options.add_argument('--ignore-ssl-errors')
     articlesData = []
 
+    #Heroku paths
+    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BI")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("disable-dev-shm-usage")
+    chrome_options.add_argument("--no-sandbox")
+
     #Chrome drivers
-    driver = Chrome(chrome_options=options)
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER PATH"), chrome_options=chrome_options)
 
     #Navegar a google academico
     driver.get('https://scholar.google.com/citations?view_op=search_authors&mauthors=&hl=en&oi=ao')

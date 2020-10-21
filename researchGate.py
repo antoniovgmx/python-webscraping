@@ -3,18 +3,25 @@ from selenium.webdriver import Chrome #https://www.selenium.dev/documentation/en
 from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait #https://www.selenium.dev/documentation/en/webdriver/waits/
 from selenium.webdriver.common.by import By #https://www.selenium.dev/documentation/en/webdriver/web_element/
+import os
 
 def findOnePage(search_param):
 
 
-	# Ignorar los certificados:
-	options = webdriver.ChromeOptions()
-	options.add_argument('ignore-certificate-errors')
-	options.add_argument('--ignore-ssl-errors')
-	options.headless = True
+	#Ignorar los certificados:
+	chrome_options = webdriver.ChromeOptions()
+	chrome_options.add_argument('ignore-certificate-errors')
+	chrome_options.add_argument('--ignore-ssl-errors')
+	
+
+	#Heroku paths
+	chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BI")
+	chrome_options.add_argument("--headless")
+	chrome_options.add_argument("disable-dev-shm-usage")
+	chrome_options.add_argument("--no-sandbox")
 
 	# Instanciando el webdriver de Chrome (Chromium)
-	driver = Chrome(chrome_options=options)
+	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER PATH"), chrome_options=chrome_options)
 
 	# Navegar hacia el URL deseado con el nombre a buscar ya dentro del URI
 	driver.get('https://www.researchgate.net/search/publication?q="{}"'.format(search_param))
