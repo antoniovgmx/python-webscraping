@@ -30,7 +30,7 @@ def findGoogle(search_param):
     driver.get('https://scholar.google.com/citations?view_op=search_authors&mauthors=&hl=en&oi=ao')
 
     #Esperar 10 segundos para el buscador
-    search = WebDriverWait(driver, timeout = 10).until(lambda d: d.find_element_by_class_name('gs_in_txt'))
+    search = WebDriverWait(driver, timeout = 120).until(lambda d: d.find_element_by_class_name('gs_in_txt'))
 
     #Buscar un resultado
     search.send_keys(search_param)
@@ -38,7 +38,7 @@ def findGoogle(search_param):
 
     #Verificar si existen resultados por 5 segundos
     try:
-        WebDriverWait(driver, timeout = 10).until(lambda d : d.find_elements_by_class_name("gsc_1usr"))
+        WebDriverWait(driver, timeout = 120).until(lambda d : d.find_elements_by_class_name("gsc_1usr"))
         print("se encontraton resultado")
     except:
         return [{ "error" : "Sin resultados" }]
@@ -48,16 +48,16 @@ def findGoogle(search_param):
 
     #Esperar a que la pagina cargue por 5 segundos
     try:
-        WebDriverWait(driver, timeout = 10).until(lambda d: d.find_element_by_id('gsc_a_b')) 
+        WebDriverWait(driver, timeout = 120).until(lambda d: d.find_element_by_id('gsc_a_b')) 
 
         #Cargar todos los articulos
         driver.find_element_by_id('gsc_bpf_more').click()
-        time.sleep(1) #TODO Mejorar esta linea
+        time.sleep(3) #TODO Mejorar esta linea
     except:
         pass
 
     #Esperar a que los articulos se carguen por 10 segundos
-    articles = WebDriverWait(driver, timeout = 10).until(lambda d: d.find_elements_by_class_name('gsc_a_tr'))
+    articles = WebDriverWait(driver, timeout = 120).until(lambda d: d.find_elements_by_class_name('gsc_a_tr'))
     print(len(articles))
 
     #Ciclando articulos
