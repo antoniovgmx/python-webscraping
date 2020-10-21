@@ -12,16 +12,18 @@ def findOnePage(search_param):
 	chrome_options = webdriver.ChromeOptions()
 	chrome_options.add_argument('ignore-certificate-errors')
 	chrome_options.add_argument('--ignore-ssl-errors')
-	
+	articlesData = []
 
 	#Heroku paths
-	chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BI")
-	chrome_options.add_argument("--headless")
-	chrome_options.add_argument("disable-dev-shm-usage")
-	chrome_options.add_argument("--no-sandbox")
+	CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+	chrome_bin = os.environ.get("GOOGLE_CHROME_BIN", "chromedriver")
+	chrome_options.binary_location = chrome_bin
+	chrome_options.add_argument("— disable-gpu")
+	chrome_options.add_argument("— no-sandbox")
+	chrome_options.add_argument("— headless")
 
-	# Instanciando el webdriver de Chrome (Chromium)
-	driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER PATH"), chrome_options=chrome_options)
+	#Chrome drivers
+	driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
 	# Navegar hacia el URL deseado con el nombre a buscar ya dentro del URI
 	driver.get('https://www.researchgate.net/search/publication?q="{}"'.format(search_param))

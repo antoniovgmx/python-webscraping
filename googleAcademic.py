@@ -16,13 +16,15 @@ def findGoogle(search_param):
     articlesData = []
 
     #Heroku paths
-    chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BI")
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("disable-dev-shm-usage")
-    chrome_options.add_argument("--no-sandbox")
+    CHROMEDRIVER_PATH = "/app/.chromedriver/bin/chromedriver"
+    chrome_bin = os.environ.get("GOOGLE_CHROME_BIN", "chromedriver")
+    chrome_options.binary_location = chrome_bin
+    chrome_options.add_argument("— disable-gpu")
+    chrome_options.add_argument("— no-sandbox")
+    chrome_options.add_argument("— headless")
 
     #Chrome drivers
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER PATH"), chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
     #Navegar a google academico
     driver.get('https://scholar.google.com/citations?view_op=search_authors&mauthors=&hl=en&oi=ao')
