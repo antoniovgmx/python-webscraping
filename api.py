@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 from microsoftAcademic import findMicrosoft
 from googleAcademic import findGoogle
-from database import queryDatabase, insertData, insertTest, replaceTest
+from database import queryDatabase, insertData
 from bson import json_util
 
 
