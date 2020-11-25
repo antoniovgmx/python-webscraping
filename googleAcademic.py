@@ -21,7 +21,7 @@ def findGoogle(search_param):
     chrome_options.add_argument("--headless")
 
     #Chrome drivers
-    chrome_path = os.path.abspath("../../usr/lib/chromium-browser/chromedriver")
+    chrome_path = os.path.abspath("../usr/lib/chromium-browser/chromedriver")
     driver = webdriver.Chrome(chrome_path, chrome_options=chrome_options)
 
     #Navegar a google academico

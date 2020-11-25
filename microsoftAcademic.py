@@ -17,7 +17,7 @@ def findMicrosoft (search_param):
     articlesData = []
 
 	# Instanciando el webdriver de Chrome (Chromium)
-    chrome_path = os.path.abspath("../../usr/lib/chromium-browser/chromedriver")
+    chrome_path = os.path.abspath("../usr/lib/chromium-browser/chromedriver")
     driver = webdriver.Chrome(chrome_path, chrome_options=chrome_options)
 
 	# Navegar hacia el URL deseado con el nombre a buscar ya dentro del URI
