@@ -78,5 +78,7 @@ def findGoogle(search_param):
         #Agregar datos a lista
         articlesData.append(data)
 
-    return articlesData
-
+    return {
+        "articles" : articlesData,
+        "Google count" : len(articlesData)
+    }

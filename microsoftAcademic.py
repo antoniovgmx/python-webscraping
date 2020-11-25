@@ -26,7 +26,7 @@ def findMicrosoft (search_param):
     time.sleep(2)
     try:
         driver.find_element_by_class_name("not-found")
-        return "Sin resultados"
+        return { "articles" : [], "count" : 0 }
     except:
         pass
     search = driver.find_element_by_class_name("author-card")
@@ -60,4 +60,8 @@ def findMicrosoft (search_param):
             time.sleep(1)
 
         except:
-            return articlesData
+            microsoftData = {
+                "articles" : articlesData,
+                "Microsoft count" : len(articlesData)
+            }
+            return microsoftData

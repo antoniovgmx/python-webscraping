@@ -1,6 +1,6 @@
 import datetime
 from pymongo import MongoClient
-connectionString="mongodb+srv://admin:admin@cluster0.snt3m.mongodb.net/<dbname>?retryWrites=true&w=majority"
+connectionString="mongodb+srv://admin:serviciosocial@webscrape-database.ibt88.mongodb.net/<dbname>?retryWrites=true&w=majority"
 # localConnection=""
 client = MongoClient(connectionString)
 db=client.scraped
@@ -14,7 +14,6 @@ def queryDatabase(search_param):
         return None
 
 def insertData(name, data):
-
     if(queryDatabase(name) is not None):
         authors.replace_one({ 'full_name' : name }, {
         'full_name' : name,
@@ -43,9 +42,7 @@ def insertTest(name):
     })
 
     inserted = queryDatabase(name)
-
     return inserted
-
 
 def replaceTest(name, newname):
     authors.replace_one({ 'full_name' : name }, {
@@ -54,8 +51,6 @@ def replaceTest(name, newname):
         'research_gate' : 'No data',
         'google' : 'No data'
     }) 
-
     replaced = queryDatabase(newname)
-
     return replaced
 

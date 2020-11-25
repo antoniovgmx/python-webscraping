@@ -9,8 +9,16 @@ app = Flask(__name__)
 
 # Consulta la base de datos, de no tener datos se hace el scrape
 @app.route('/')
-def hello():
-    return "<h1 style='color:blue'>Hello There!</h1>"
+def welcome():
+
+    return {
+        'message' : 'Bienvenido a la api de python webscraper de identidad digital',
+        'authors' : {
+            'Luis Octavio Grajales Servín' : 'Dev',
+            'Antonio Vázquez Gutiérrez' : 'Dev',
+            'M.S.I. José Alejandro Vargas Díaz' : 'Profesor a cargo'
+        }
+    }
 
 @app.route('/<string:name>')
 def query_by_name(name):
@@ -50,37 +58,6 @@ def scrape(name):
     insertedData = insertData(name, scrapeResults)
     
     return insertedData
-
-# Testing
-@app.route('/test/insert/<string:name>')
-def testinsertendpoint(name):
-
-    try:
-        return insertTest(name)
-        # return "Success"
-    except:
-        return "Fail"
-
-@app.route('/test/onepageclass/<string:name>')
-def query_one_page_class(name):
-
-    scrapeResults = {
-        'Microsoft_Academic' : findMicrosoft(name)
-    }
-
-    return scrapeResults
-
-# Testing
-@app.route('/test/replace/<string:name>/<string:newname>')
-def testreplaceendpoint(name,newname):
-
-    try:
-        return replaceTest(name, newname)
-        # return "Success"
-    except:
-        return "Fail"
-    
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
