@@ -21,7 +21,7 @@ def findMicrosoft (search_param):
     driver = webdriver.Chrome(chrome_path, chrome_options=chrome_options)
 
 	# Navegar hacia el URL deseado con el nombre a buscar ya dentro del URI
-    url = 'https://academic.microsoft.com/search?q="{}"'.format(search_param)
+    url = 'https://academic.microsoft.com/search?q={}'.format(search_param)
     driver.get(url)
     time.sleep(2)
     try:
