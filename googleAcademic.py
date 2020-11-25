@@ -25,10 +25,11 @@ def findGoogle(search_param):
     driver = webdriver.Chrome(chrome_path, chrome_options=chrome_options)
 
     #Navegar a google academico
-    driver.get('https://scholar.google.com/citations?view_op=search_authors&mauthors=&hl=en&oi=ao')
+    url = 'https://scholar.google.com/citations?hl=en&view_op=search_authors&mauthors="{}"'.format(search_param)
+    driver.get(url)
 
     #Esperar 10 segundos para el buscador
-    search = WebDriverWait(driver, timeout = 120).until(lambda d: d.find_element_by_class_name('gs_in_txt'))
+    search = WebDriverWait(driver, timeout = 10).until(lambda d: d.find_element_by_class_name('gs_in_txt'))
 
     #Buscar un resultado
     search.send_keys(search_param)
