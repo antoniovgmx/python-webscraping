@@ -24,7 +24,7 @@ def findMicrosoft (search_param):
     url = 'https://academic.microsoft.com/search?q={}%20'.format(search_param)
     driver.get(url)
     time.sleep(5)
-   if (len(driver.find_elements_by_class_name("author-card")) == 0 ):
+    if (len(driver.find_elements_by_class_name("author-card")) == 0 ):
         driver.close()
         return ("ERROR : NO SE ENCONTRARON ARTICULOS")
     else:
@@ -39,33 +39,33 @@ def findMicrosoft (search_param):
     while True:
         articles = driver.find_elements_by_class_name("primary_paper")
 
-        for article in articles:
-            title = article.find_element_by_class_name("au-target").text
-            date =  article.find_element_by_class_name("year").get_attribute('textContent')
-            authors_div = article.find_elements_by_class_name("author")
-            authors = []
-            for author in authors_div:
-                authors.append(author.get_attribute('innerText'))
+    for article in articles:
+        title = article.find_element_by_class_name("au-target").text
+        date =  article.find_element_by_class_name("year").get_attribute('textContent')
+        authors_div = article.find_elements_by_class_name("author")
+        authors = []
+        for author in authors_div:
+            authors.append(author.get_attribute('innerText'))
 
-            data = {
-                "title" : title,
-                "date" : date,
-                # "DOI" : DOI,
-                # "ISBN" : ISBN,
-                "collaborators" : authors
-            }
+        data = {
+            "title" : title,
+            "date" : date,
+            # "DOI" : DOI,
+            # "ISBN" : ISBN,
+            "collaborators" : authors
+        }
 
-            # Agregamos el artículo a la lista
-            articlesData.append(data)
+        # Agregamos el artículo a la lista
+        articlesData.append(data)
 
-        try:
-            button = driver.find_element_by_xpath("//i[@class='icon-up right au-target']")
-            button.click()
-            time.sleep(3)
-        except:
-            microsoftData = {
-                "articles" : articlesData,
-                "Microsoft count" : len(articlesData)
-            }
-            driver.close()
-            return microsoftData
+    try:
+        button = driver.find_element_by_xpath("//i[@class='icon-up right au-target']")
+        button.click()
+        time.sleep(3)
+    except:
+        microsoftData = {
+            "articles" : articlesData,
+            "Microsoft count" : len(articlesData)
+        }
+        driver.close()
+        return microsoftData
