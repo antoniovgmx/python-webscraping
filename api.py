@@ -28,7 +28,7 @@ def query_by_name(name):
         return queryResult
     else:
         scrapeResults = {
-            'microsoft_academic' : findMicrosoft(name),
+            'microsoft' : findMicrosoft(name),
             'google' : findGoogle(name)
         }
 
@@ -49,9 +49,9 @@ def query(name):
 # Realiza únicamente el scrape guardando o sobreescribiendo los datos de la base de datos
 @app.route('/scrape/<string:name>')
 def scrape(name):
-
+    print(name)
     scrapeResults = {
-        'microsoft_academic' : findMicrosoft(name),
+        'microsoft' : findMicrosoft(name),
         'google' : findGoogle(name)
     }
 
@@ -60,4 +60,4 @@ def scrape(name):
     return insertedData
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(debug=True)

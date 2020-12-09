@@ -1,7 +1,6 @@
 import datetime
 from pymongo import MongoClient
 connectionString="mongodb+srv://admin:serviciosocial@webscrape-database.ibt88.mongodb.net/<dbname>?retryWrites=true&w=majority"
-# localConnection=""
 client = MongoClient(connectionString)
 db=client.scraped
 authors = db.authors
@@ -18,14 +17,14 @@ def insertData(name, data):
         authors.replace_one({ 'full_name' : name }, {
         'full_name' : name,
         'date' : datetime.datetime.now(),
-        'microsoft_academic' : data['microsoft_academic'],
+        'microsoft' : data['microsoft'],
         'google' : data['google']
         }) 
     else:
         authors.insert_one({
         'full_name' : name,
         'date' : datetime.datetime.now(),
-        'microsoft_academic' : data['microsoft_academic'],
+        'microsoft' : data['microsoft'],
         'google' : data['google']
         })
 
