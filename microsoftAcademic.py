@@ -21,19 +21,20 @@ def findMicrosoft (search_param):
     driver = webdriver.Chrome(chrome_path, chrome_options=chrome_options)
 
 	# Navegar hacia el URL deseado con el nombre a buscar ya dentro del URI
-    url = 'https://academic.microsoft.com/search?q={}'.format(search_param)
+    url = 'https://academic.microsoft.com/search?q={}%20'.format(search_param)
     driver.get(url)
-    time.sleep(2)
-    try:
-        driver.find_element_by_class_name("not-found")
-        return [{ "error" : "No se encontraron resultados" }]
-    except:
+    time.sleep(5)
+   if (len(driver.find_elements_by_class_name("author-card")) == 0 ):
+        driver.close()
+        return ("ERROR : NO SE ENCONTRARON ARTICULOS")
+    else:
         pass
     search = driver.find_element_by_class_name("author-card")
+    # print("found autor-card")
     search = search.find_element_by_class_name("header")
     search = search.find_element_by_xpath("//div[@class='name']/a").get_attribute('href')
     driver.get(search)
-    time.sleep(2)
+    time.sleep(4)
 
     while True:
         articles = driver.find_elements_by_class_name("primary_paper")
@@ -49,19 +50,22 @@ def findMicrosoft (search_param):
             data = {
                 "title" : title,
                 "date" : date,
+                # "DOI" : DOI,
+                # "ISBN" : ISBN,
                 "collaborators" : authors
             }
 
             # Agregamos el artículo a la lista
             articlesData.append(data)
+
         try:
             button = driver.find_element_by_xpath("//i[@class='icon-up right au-target']")
             button.click()
-            time.sleep(1)
-
+            time.sleep(3)
         except:
             microsoftData = {
                 "articles" : articlesData,
                 "Microsoft count" : len(articlesData)
             }
+            driver.close()
             return microsoftData
