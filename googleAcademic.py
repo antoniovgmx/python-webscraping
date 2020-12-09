@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 import time
+import os
 
 def findGoogle(search_param):
     #Ignorar los certificados:
@@ -14,7 +15,7 @@ def findGoogle(search_param):
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--headless")
-    
+
     chrome_path = os.path.abspath("../usr/lib/chromium-browser/chromedriver")
     driver = webdriver.Chrome(chrome_path, chrome_options=chrome_options)
 
